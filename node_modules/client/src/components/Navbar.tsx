@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
       </Typography>
       {loggedIn ? (
         <>
-          <NavLink to="/" className="p-4 mr-4 text-primary-dark"> {/* Added text-primary-dark for color */}
+          <NavLink to="/" className="p-4 text-primary-dark"> {/* Added text-primary-dark for color */}
             Home
           </NavLink>
           <NavLink to="/login" onClick={handleLogout} className="p-4">

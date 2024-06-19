@@ -1,12 +1,10 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import {
   Box,
   Typography,
-  useTheme,
-  useMediaQuery,
   TextField,
   Button,
   Alert,
@@ -14,15 +12,13 @@ import {
 } from "@mui/material";
 
 const Login: React.FC = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
-  const isNotMobile = useMediaQuery("(min-width: 1000px)");
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:8081/api/v1/auth/login", { email, password });
@@ -30,7 +26,6 @@ const Login: React.FC = () => {
       localStorage.setItem("authToken", JSON.stringify(true));
       navigate("/");
     } catch (err: any) {
-      console.log(err);
       if (err.response?.data?.error) {
         setError(err.response.data.error);
       } else if (err.message) {
@@ -43,28 +38,22 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Box
-      width={isNotMobile ? "40%" : "80%"}
-      p={"2rem"}
-      m={"2rem auto"}
-      borderRadius={5}
-      sx={{ boxShadow: 5 }}
-      bgcolor={theme.palette.background.paper}
-    >
+    <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
       <Collapse in={error !== ''}>
-        <Alert severity="error" sx={{ mb: 2 }}>
+        <Alert severity="error" className="mb-4">
           {error}
         </Alert>
       </Collapse>
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3">Login</Typography>
-
+        <Typography variant="h3" className="mb-4">
+          Login
+        </Typography>
         <TextField
           label="Email"
           type="email"
           required
-          margin="normal"
           fullWidth
+          className="mb-4"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -74,8 +63,8 @@ const Login: React.FC = () => {
           label="Password"
           type="password"
           required
-          margin="normal"
           fullWidth
+          className="mb-4"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -86,15 +75,15 @@ const Login: React.FC = () => {
           fullWidth
           variant="contained"
           size="large"
-          sx={{ color: "white", mt: 2 }}
+          className="bg-blue-500 text-white"
         >
           Login
         </Button>
-        <Typography mt={2}>
+        <Typography className="mt-4">
           Don't have an account? <Link to="/register">Register</Link>
         </Typography>
       </form>
-    </Box>
+    </div>
   );
 };
 

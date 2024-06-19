@@ -1,11 +1,9 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   Box,
   Typography,
-  useTheme,
-  useMediaQuery,
   TextField,
   Button,
   Alert,
@@ -14,25 +12,21 @@ import {
 } from "@mui/material";
 
 const JsConverter: React.FC = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
-  const isNotMobile = useMediaQuery("(min-width: 1000px)");
 
   const [text, setText] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const loggedIn = JSON.parse(localStorage.getItem("authToken") || "false");
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const { data } = await axios.post("http://localhost:8081/api/v1/openai/js-converter", {
         text,
       });
-      console.log(data);
       setCode(data);
     } catch (err: any) {
-      console.log(err);
       if (err.response?.data?.error) {
         setError(err.response.data.error);
       } else if (err.message) {
@@ -47,97 +41,57 @@ const JsConverter: React.FC = () => {
   return (
     <>
       {!loggedIn ? (
-        <Box p={10} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+        <div className="p-10 flex justify-center items-start">
           <Typography variant="h3">
             Please <Link to="/login">Log In</Link> to Continue
           </Typography>
-        </Box>
+        </div>
       ) : (
-        <Box
-          width={isNotMobile ? "40%" : "80%"}
-          p={"2rem"}
-          m={"2rem auto"}
-          borderRadius={5}
-          sx={{ boxShadow: 5 }}
-          bgcolor={theme.palette.background.paper}
-        >
+        <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
           <Collapse in={error !== ""}>
-            <Alert severity="error" sx={{ mb: 2 }}>
+            <Alert severity="error" className="mb-4">
               {error}
             </Alert>
           </Collapse>
           <form onSubmit={handleSubmit}>
-            <Typography variant="h3">JS Converter</Typography>
-
+            <Typography variant="h3" className="mb-4">
+              JS Converter
+            </Typography>
             <TextField
               placeholder="Add your text"
               type="text"
               multiline
               required
-              margin="normal"
               fullWidth
+              className="mb-4"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-
             <Button
               type="submit"
               fullWidth
               variant="contained"
               size="large"
-              sx={{ color: "white", mt: 2 }}
+              className="bg-blue-500 text-white"
             >
               Convert
             </Button>
-            <Typography mt={2}>
+            <Typography className="mt-4">
               Not this tool? <Link to="/">GO BACK</Link>
             </Typography>
           </form>
-
-          {code ? (
-            <Card
-              sx={{
-                mt: 4,
-                border: 1,
-                boxShadow: 0,
-                height: "500px",
-                borderRadius: 5,
-                borderColor: "primary.main",
-                bgcolor: "background.default",
-                overflow: "auto",
-              }}
-            >
-              <pre>
-                <Typography p={2}>{code}</Typography>
-              </pre>
-            </Card>
-          ) : (
-            <Card
-              sx={{
-                mt: 4,
-                border: 1,
-                boxShadow: 0,
-                height: "500px",
-                borderRadius: 5,
-                borderColor: "primary.main",
-                bgcolor: "background.default",
-              }}
-            >
-              <Typography
-                variant="h5"
-                color="primary.main"
-                sx={{
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  lineHeight: "450px",
-                }}
-              >
-                Your Code Will Appear Here
-                (Please wait for a few secs after submitting...)
-              </Typography>
-            </Card>
-          )}
-        </Box>
+          <div className="mt-4">
+            {code ? (
+              <Card className="border border-gray-300 rounded p-4 h-80 overflow-auto">
+                <pre>{code}</pre>
+              </Card>
+            ) : (
+              <Card className="border border-gray-300 rounded p-4 h-80 flex justify-center items-center text-gray-500">
+                Your Code Will Appear Here (Please wait for a few secs after submitting...)
+              </Card>
+            )}
+          </div>
+        </div>
       )}
     </>
   );

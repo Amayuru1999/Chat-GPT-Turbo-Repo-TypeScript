@@ -2,22 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import {
-  Box,
-  Typography,
-  useTheme,
-  useMediaQuery,
-  TextField,
-  Button,
-  Alert,
-  Collapse,
-  Card,
-} from "@mui/material";
+import { TextField, Button, Alert, Typography } from "@mui/material";
 
 const ChatBot: React.FC = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
-  const isNotMobile = useMediaQuery("(min-width: 1000px)");
   const [prompt, setPrompt] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -27,10 +15,8 @@ const ChatBot: React.FC = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post<{ text: string }>("http://localhost:8081/api/v1/openai/run", { prompt });
-      console.log(data);
       setResponse(data.text);
     } catch (err: any) {
-      console.log(err);
       if (err.response && err.response.data.message) {
         setError(err.response.data.message);
       } else if (err.message) {
@@ -45,98 +31,63 @@ const ChatBot: React.FC = () => {
   return (
     <>
       {!loggedIn ? (
-        <Box p={10} sx={{ display: 'flex', justifyContent: 'center', alignContent: 'flex-start' }}>
-          <Typography variant="h3">
+        <div className="p-10 flex justify-center align-content-start">
+          <h3>
             Please
-            <Link to={'/login'} >Log In</Link>
+            <Link to="/login">Log In</Link>
             to Continue
-          </Typography>
-        </Box>
+          </h3>
+        </div>
       ) : (
-        <Box
-          component="div" 
-          width={isNotMobile ? "40%" : "80%"}
-          p={"2rem"}
-          m={"2rem auto"}
-          borderRadius={5}
-          sx={{ boxShadow: 5, backgroundColor: theme.palette.background.default }} 
-        >
-          <Collapse in={error !== ''}>
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {error}
-            </Alert>
-          </Collapse>
-          <form onSubmit={handleSubmit}>
-            <Typography variant="h3">Ask with Chatbot</Typography>
-
-            <TextField
-              placeholder="Add your text"
-              type="text"
-              multiline={true}
-              required
-              margin="normal"
-              fullWidth
-              value={prompt}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setPrompt(e.target.value);
-              }}
-            />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              sx={{ color: "white", mt: 2 }}
-            >
-              Chat
-            </Button>
-            <Typography mt={2}>
+        <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
+          <div className="mb-4">
+            <form onSubmit={handleSubmit}>
+              <h3 className="text-2xl font-bold">Ask with Chatbot</h3>
+              <TextField
+                placeholder="Add your text"
+                type="text"
+                multiline={true}
+                required
+                fullWidth
+                className="mt-4"
+                value={prompt}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setPrompt(e.target.value);
+                }}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                size="large"
+                className="bg-blue-500 text-white mt-4"
+              >
+                Chat
+              </Button>
+            </form>
+          </div>
+          <div className="mb-4">
+            {error !== '' && (
+              <Alert severity="error">{error}</Alert>
+            )}
+          </div>
+          <div>
+            {response ? (
+              <div className="border border-gray-300 rounded p-4 h-80 overflow-y-auto">
+                {response}
+              </div>
+            ) : (
+              <div className="border border-gray-300 rounded p-4 h-80 flex justify-center items-center text-gray-500">
+                Bot's Response (Please wait for few secs after submitting...)
+              </div>
+            )}
+          </div>
+          <div className="mt-4">
+            <Typography>
               Not this tool ? <Link to="/">GO BACK</Link>
             </Typography>
-          </form>
-
-          {response ? (
-            <Card
-              sx={{
-                mt: 4,
-                border: 1,
-                boxShadow: 0,
-                height: "500px",
-                borderRadius: 5,
-                borderColor: "natural.medium",
-                bgcolor: "background.default",
-              }}
-            >
-              <Typography p={2}>{response}</Typography>
-            </Card>
-          ) : (
-            <Card
-              sx={{
-                mt: 4,
-                border: 1,
-                boxShadow: 0,
-                height: "500px",
-                borderRadius: 5,
-                borderColor: "natural.medium",
-                bgcolor: "background.default",
-              }}
-            >
-              <Typography
-                variant="h5"
-                color="natural.main"
-                sx={{
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                  lineHeight: "450px",
-                }}
-              >
-                Bot's Response
-                (Please wait for few secs after submitting...)
-              </Typography>
-            </Card>
-          )}
-        </Box>
+          </div>
+        </div>
       )}
     </>
   );
