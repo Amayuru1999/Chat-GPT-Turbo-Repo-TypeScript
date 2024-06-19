@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8080/api/v1/auth/logout");
+      await axios.post("http://localhost:8081/api/v1/auth/logout");
       localStorage.removeItem("authToken");
       toast.success("Logged out successfully");
       navigate("/login");
@@ -23,12 +23,11 @@ const Navbar: React.FC = () => {
   return (
     <Box
       width="100%"
-      p="1rem 6%"
-      textAlign="center"
-      sx={{ 
-        backgroundColor: theme.palette.background.default, 
-        boxShadow: 3, 
-        mb: 2 
+      className="p-4 text-center"
+      sx={{
+        backgroundColor: theme.palette.background.default,
+        boxShadow: 3,
+        mb: 2,
       }}
     >
       <Typography variant="h1" color="primary" fontWeight="medium">
@@ -36,22 +35,23 @@ const Navbar: React.FC = () => {
       </Typography>
       {loggedIn ? (
         <>
-          <NavLink to="/" style={{ padding: "1rem" }}>
+          <NavLink to="/" className="p-4 mr-4 text-primary-dark"> {/* Added text-primary-dark for color */}
             Home
           </NavLink>
-          <NavLink to="/login" onClick={handleLogout} style={{ padding: "1rem" }}>
+          <NavLink to="/login" onClick={handleLogout} className="p-4">
             Logout
           </NavLink>
         </>
+
       ) : (
         <>
-          <NavLink to="/" style={{ padding: "1rem" }}>
+          <NavLink to="/" className="p-4">
             Home
           </NavLink>
-          <NavLink to="/register" style={{ padding: "1rem" }}>
+          <NavLink to="/register" className="p-4">
             Register
           </NavLink>
-          <NavLink to="/login" style={{ padding: "1rem" }}>
+          <NavLink to="/login" className="p-4">
             Login
           </NavLink>
         </>
