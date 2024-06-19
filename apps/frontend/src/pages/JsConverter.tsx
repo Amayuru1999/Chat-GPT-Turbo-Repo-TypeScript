@@ -26,7 +26,7 @@ const JsConverter: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:8080/api/v1/openai/js-converter", {
+      const { data } = await axios.post("http://localhost:8081/api/v1/openai/js-converter", {
         text,
       });
       console.log(data);

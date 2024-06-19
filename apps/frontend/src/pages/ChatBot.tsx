@@ -26,7 +26,7 @@ const ChatBot: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post<{ text: string }>("http://localhost:8080/api/v1/openai/run", { prompt });
+      const { data } = await axios.post<{ text: string }>("http://localhost:8081/api/v1/openai/run", { prompt });
       console.log(data);
       setResponse(data.text);
     } catch (err: any) {

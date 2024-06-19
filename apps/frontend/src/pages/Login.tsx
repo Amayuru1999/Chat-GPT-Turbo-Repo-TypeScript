@@ -25,7 +25,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/auth/login", { email, password });
+      await axios.post("http://localhost:8081/api/v1/auth/login", { email, password });
       toast.success("Logged in Successfully");
       localStorage.setItem("authToken", JSON.stringify(true));
       navigate("/");

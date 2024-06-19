@@ -27,7 +27,7 @@ const Summary: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:8080/api/v1/openai/summary", { text });
+      const { data } = await axios.post("http://localhost:8081/api/v1/openai/summary", { text });
       console.log(data);
       setSummary(data);
     } catch (err: any) {
