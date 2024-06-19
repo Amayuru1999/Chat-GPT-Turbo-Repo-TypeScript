@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Alert,
-  Collapse,
-} from "@mui/material";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -39,49 +31,40 @@ const Login: React.FC = () => {
 
   return (
     <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
-      <Collapse in={error !== ''}>
-        <Alert severity="error" className="mb-4">
-          {error}
-        </Alert>
-      </Collapse>
+      {error !== '' && (
+        <div className="mb-4 text-red-500">{error}</div>
+      )}
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3" className="mb-4">
-          Login
-        </Typography>
-        <TextField
-          label="Email"
+        <h3 className="mb-4 text-2xl font-bold">Login</h3>
+        <input
+          placeholder="Email"
           type="email"
           required
-          fullWidth
-          className="mb-4"
+          className="mb-4 w-full p-2 border border-gray-300 rounded"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
-        <TextField
-          label="Password"
+        <input
+          placeholder="Password"
           type="password"
           required
-          fullWidth
-          className="mb-4"
+          className="mb-4 w-full p-2 border border-gray-300 rounded"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <Button
+        <button
           type="submit"
-          fullWidth
-          variant="contained"
-          size="large"
-          className="bg-blue-500 text-white"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
         >
           Login
-        </Button>
-        <Typography className="mt-4">
+        </button>
+        <p className="mt-4">
           Don't have an account? <Link to="/register">Register</Link>
-        </Typography>
+        </p>
       </form>
     </div>
   );

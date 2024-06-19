@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Alert,
-  Collapse,
-} from "@mui/material";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -43,56 +35,43 @@ const Register: React.FC = () => {
 
   return (
     <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
-      <Collapse in={error !== ""}>
-        <Alert severity="error" className="mb-4">
-          {error}
-        </Alert>
-      </Collapse>
+      {error !== "" && (
+        <div className="mb-4 text-red-500">{error}</div>
+      )}
       <form onSubmit={handleSubmit}>
-        <Typography variant="h3" className="mb-4">
-          Register
-        </Typography>
-        <TextField
-          label="Username"
+        <h3 className="mb-4 text-2xl font-bold">Register</h3>
+        <input
+          placeholder="Username"
           required
-          margin="normal"
-          fullWidth
-          className="mb-4"
+          className="mb-4 w-full p-2 border border-gray-300 rounded"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <TextField
-          label="Email"
+        <input
+          placeholder="Email"
           type="email"
           required
-          margin="normal"
-          fullWidth
-          className="mb-4"
+          className="mb-4 w-full p-2 border border-gray-300 rounded"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <TextField
-          label="Password"
+        <input
+          placeholder="Password"
           type="password"
           required
-          margin="normal"
-          fullWidth
-          className="mb-4"
+          className="mb-4 w-full p-2 border border-gray-300 rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
+        <button
           type="submit"
-          fullWidth
-          variant="contained"
-          size="large"
-          className="bg-blue-500 text-white"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
         >
           Register
-        </Button>
-        <Typography className="mt-4">
+        </button>
+        <p className="mt-4">
           Already have an account? <Link to="/login">Login</Link>
-        </Typography>
+        </p>
       </form>
     </div>
   );

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { TextField, Button, Alert, Typography } from "@mui/material";
 
 const ChatBot: React.FC = () => {
   const navigate = useNavigate();
@@ -43,32 +42,25 @@ const ChatBot: React.FC = () => {
           <div className="mb-4">
             <form onSubmit={handleSubmit}>
               <h3 className="text-2xl font-bold">Ask with Chatbot</h3>
-              <TextField
+              <textarea
                 placeholder="Add your text"
-                type="text"
-                multiline={true}
-                required
-                fullWidth
-                className="mt-4"
+                className="mt-4 w-full p-2 border border-gray-300 rounded"
                 value={prompt}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                   setPrompt(e.target.value);
                 }}
               />
-              <Button
+              <button
                 type="submit"
-                fullWidth
-                variant="contained"
-                size="large"
-                className="bg-blue-500 text-white mt-4"
+                className="w-full bg-blue-500 text-white mt-4 py-2 rounded hover:bg-blue-600 transition duration-300"
               >
                 Chat
-              </Button>
+              </button>
             </form>
           </div>
           <div className="mb-4">
             {error !== '' && (
-              <Alert severity="error">{error}</Alert>
+              <div className="text-red-500">{error}</div>
             )}
           </div>
           <div>
@@ -78,14 +70,14 @@ const ChatBot: React.FC = () => {
               </div>
             ) : (
               <div className="border border-gray-300 rounded p-4 h-80 flex justify-center items-center text-gray-500">
-                Bot's Response (Please wait for few secs after submitting...)
+                Bot's Response (Please wait for a few seconds after submitting...)
               </div>
             )}
           </div>
           <div className="mt-4">
-            <Typography>
+            <p>
               Not this tool ? <Link to="/">GO BACK</Link>
-            </Typography>
+            </p>
           </div>
         </div>
       )}

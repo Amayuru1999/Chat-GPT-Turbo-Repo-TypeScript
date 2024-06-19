@@ -315,3 +315,32 @@
 2024-06-19T09:15:35.327447Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
 2024-06-19T09:15:55.504905Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\cookies")}
 2024-06-19T09:15:55.504937Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-06-19T09:15:55.610188Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\d87692c4c25172bc-turbo.log.2024-06-19")}
+2024-06-19T09:15:55.610209Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2024-06-19T09:42:30.729157Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\Navbar.tsx")}
+2024-06-19T09:42:30.730177Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:42:36.234845Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\Navbar.tsx")}
+2024-06-19T09:42:36.234872Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:42:40.117177Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\Navbar.tsx")}
+2024-06-19T09:42:40.117202Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:46:04.321117Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\ChatBot.tsx")}
+2024-06-19T09:46:04.321328Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:48:34.614723Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\ChatBot.tsx")}
+2024-06-19T09:48:34.614759Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:51:23.608294Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\JsConverter.tsx")}
+2024-06-19T09:51:23.608328Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:52:17.120052Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\Login.tsx")}
+2024-06-19T09:52:17.120315Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:53:30.017608Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\Paragraph.tsx")}
+2024-06-19T09:53:30.017634Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:54:15.621417Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\ScifiImage.tsx")}
+2024-06-19T09:54:15.621515Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:54:16.361467Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\ScifiImage.tsx")}
+2024-06-19T09:54:16.361482Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:54:16.361509Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2024-06-19T09:54:56.005252Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\Summary.tsx")}
+2024-06-19T09:54:56.005336Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:55:52.110965Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\pages\\Register.tsx")}
+2024-06-19T09:55:52.110993Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("client"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2024-06-19T09:56:02.912546Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\d87692c4c25172bc-turbo.log.2024-06-19")}
+2024-06-19T09:56:02.912572Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))

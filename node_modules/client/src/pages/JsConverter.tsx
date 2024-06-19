@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Alert,
-  Collapse,
-  Card,
-} from "@mui/material";
 
 const JsConverter: React.FC = () => {
   const navigate = useNavigate();
@@ -42,53 +33,42 @@ const JsConverter: React.FC = () => {
     <>
       {!loggedIn ? (
         <div className="p-10 flex justify-center items-start">
-          <Typography variant="h3">
+          <h3>
             Please <Link to="/login">Log In</Link> to Continue
-          </Typography>
+          </h3>
         </div>
       ) : (
         <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
-          <Collapse in={error !== ""}>
-            <Alert severity="error" className="mb-4">
-              {error}
-            </Alert>
-          </Collapse>
+          {error !== "" && (
+            <div className="mb-4 text-red-500">{error}</div>
+          )}
           <form onSubmit={handleSubmit}>
-            <Typography variant="h3" className="mb-4">
-              JS Converter
-            </Typography>
-            <TextField
+            <h3 className="mb-4 text-2xl font-bold">JS Converter</h3>
+            <textarea
               placeholder="Add your text"
-              type="text"
-              multiline
-              required
-              fullWidth
-              className="mb-4"
+              className="mb-4 w-full p-2 border border-gray-300 rounded"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              className="bg-blue-500 text-white"
+              className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
             >
               Convert
-            </Button>
-            <Typography className="mt-4">
+            </button>
+            <p className="mt-4">
               Not this tool? <Link to="/">GO BACK</Link>
-            </Typography>
+            </p>
           </form>
           <div className="mt-4">
             {code ? (
-              <Card className="border border-gray-300 rounded p-4 h-80 overflow-auto">
+              <div className="border border-gray-300 rounded p-4 h-80 overflow-auto">
                 <pre>{code}</pre>
-              </Card>
+              </div>
             ) : (
-              <Card className="border border-gray-300 rounded p-4 h-80 flex justify-center items-center text-gray-500">
+              <div className="border border-gray-300 rounded p-4 h-80 flex justify-center items-center text-gray-500">
                 Your Code Will Appear Here (Please wait for a few secs after submitting...)
-              </Card>
+              </div>
             )}
           </div>
         </div>

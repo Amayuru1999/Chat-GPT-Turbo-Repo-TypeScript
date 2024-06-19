@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Alert,
-  Collapse,
-} from "@mui/material";
 
 const ScifiImage: React.FC = () => {
   const navigate = useNavigate();
@@ -43,43 +35,32 @@ const ScifiImage: React.FC = () => {
     <>
       {!loggedIn ? (
         <div className="p-10 flex justify-center items-start">
-          <Typography variant="h3">
+          <h3>
             Please <Link to="/login">Log In</Link> to Continue
-          </Typography>
+          </h3>
         </div>
       ) : (
         <div className="w-full md:w-2/5 lg:w-2/3 mx-auto p-8 md:p-12 bg-white rounded shadow">
-          <Collapse in={error !== ""}>
-            <Alert severity="error" className="mb-4">
-              {error}
-            </Alert>
-          </Collapse>
+          {error !== "" && (
+            <div className="mb-4 text-red-500">{error}</div>
+          )}
           <form onSubmit={handleSubmit}>
-            <Typography variant="h3" className="mb-4">
-              Scifi Image
-            </Typography>
-            <TextField
+            <h3 className="mb-4 text-2xl font-bold">Scifi Image</h3>
+            <textarea
               placeholder="Add your text"
-              type="text"
-              multiline
-              required
-              fullWidth
-              className="mb-4"
+              className="mb-4 w-full p-2 border border-gray-300 rounded"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              className="bg-blue-500 text-white"
+              className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
             >
               Submit
-            </Button>
-            <Typography className="mt-4">
+            </button>
+            <p className="mt-4">
               Not this tool? <Link to="/">GO BACK</Link>
-            </Typography>
+            </p>
           </form>
 
           {image ? (
@@ -88,10 +69,9 @@ const ScifiImage: React.FC = () => {
             </div>
           ) : (
             <div className="mt-4 border border-gray-300 shadow rounded flex items-center justify-center h-80">
-              <Typography variant="h5" className="text-center">
-                Scifi Image Will Appear Here
-                (Please wait for few secs after submitting...)
-              </Typography>
+              <h5 className="text-center">
+                Scifi Image Will Appear Here (Please wait for few secs after submitting...)
+              </h5>
             </div>
           )}
         </div>
